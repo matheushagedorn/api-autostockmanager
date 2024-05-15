@@ -1,0 +1,85 @@
+### Listar todos os usuários
+GET http://localhost:8080/usuarios
+Content-Type: application/json
+
+### Obter um usuário pelo ID
+GET http://localhost:8080/usuarios/1
+Content-Type: application/json
+
+### Criar um novo usuário
+POST http://localhost:8080/usuarios
+Content-Type: application/json
+
+{
+    "nome": "João Silva",
+    "email": "joao@example.com",
+    "telefone": "123456789",
+    "bairro": "Centro",
+    "cidade": "São Paulo",
+    "rua": "Rua das Flores",
+    "tipoResidencia": "casa",
+    "idade": 30,
+    "numeroResidencia": "123",
+    "pontoReferencia": "Perto do mercado"
+}
+
+### Atualizar um usuário
+PUT http://localhost:8080/usuarios/1
+Content-Type: application/json
+
+{
+    "nome": "João da Silva",
+    "email": "joaosilva@example.com",
+    "telefone": "987654321",
+    "bairro": "Novo Centro",
+    "cidade": "São Paulo",
+    "rua": "Avenida das Árvores",
+    "tipoResidencia": "apartamento",
+    "idade": 31,
+    "numeroResidencia": "321",
+    "pontoReferencia": "Ao lado da padaria"
+}
+
+### Deletar um usuário
+DELETE http://localhost:8080/usuarios/1
+Content-Type: application/json
+
+### Listar todos os carros
+GET http://localhost:8080/carros
+Content-Type: application/json
+
+### Obter um carros pelo ID
+GET http://localhost:8080/carros/1
+Content-Type: application/json
+
+### Criar um novo carros
+POST http://localhost:8080/carros
+Content-Type: application/json
+
+{
+    "nome": "Rex",
+    "idade": 5,
+    "castrado": true,
+    "humor": "amigável",
+    "vacinado": true,
+    "foto": "http://exemplo.com/fotos/rex.jpg",
+    "descricao": "Um cachorro muito amigável e brincalhão."
+}
+
+### Atualizar um carros
+PUT http://localhost:8080/carros/1
+Content-Type: application/json
+
+{
+    "nome": "Max",
+    "idade": 6,
+    "castrado": false,
+    "humor": "calmo",
+    "vacinado": false,
+    "foto": "http://exemplo.com/fotos/max.jpg",
+    "descricao": "Calmo e adora longas caminhadas."
+}
+
+### Deletar um carros
+DELETE http://localhost:8080/carros/1
+Content-Type: application/json
