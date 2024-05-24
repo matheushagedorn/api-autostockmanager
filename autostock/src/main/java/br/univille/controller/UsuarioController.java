@@ -68,6 +68,20 @@ public class UsuarioController {
             });
     }
 
+    // Atualizar status usuário existente
+    @PutMapping("/status/{id}")
+    public Usuario mudarStatusUsuario(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
+        return usuarioRepository.findById(id)
+            .map(usuario -> {
+                usuario.setAtivo(usuarioAtualizado.getAtivo());
+                return usuarioRepository.save(usuario);
+            })
+            .orElseGet(() -> {
+                usuarioAtualizado.setId(id);
+                return usuarioRepository.save(usuarioAtualizado);
+            });
+    }
+
     // Deletar um usuário
     @DeleteMapping("/{id}")
     public void deletarUsuario(@PathVariable Long id) {
