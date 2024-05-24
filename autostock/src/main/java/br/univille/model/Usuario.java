@@ -14,16 +14,19 @@ public class Usuario {
     private String senha;
     private String nome;
     private String email;
+    private Boolean ativo = true;
+    private Boolean admin = false;
+
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
     }
-    public String getmatricula() {
+    public String getMatricula() {
         return matricula;
     }
-    public void setmatricula(String matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
     public String getsenha() {
@@ -43,6 +46,18 @@ public class Usuario {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public Boolean getAtivo() {
+        return ativo;
+    }
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+    public Boolean getAdmin() {
+        return admin;
+    }
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
 }

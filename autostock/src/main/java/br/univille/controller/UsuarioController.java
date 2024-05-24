@@ -1,6 +1,7 @@
 package br.univille.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
@@ -36,6 +38,13 @@ public class UsuarioController {
         return usuario.orElse(null);
     }
 
+    //Buscar um usuário pelo Matricula
+    @GetMapping("/matricula/{matricula}")
+    public Usuario buscarPorMatricula(@PathVariable String matricula) {
+        Optional<Usuario> usuario = usuarioRepository.findByMatricula(matricula);
+        return usuario.orElse(null);
+    }
+
     //Criar um novo usuário
     @PostMapping
     public Usuario criarUsuario(@RequestBody Usuario usuario) {
@@ -47,8 +56,10 @@ public class UsuarioController {
     public Usuario atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
         return usuarioRepository.findById(id)
             .map(usuario -> {
+                usuario.setMatricula(usuarioAtualizado.getMatricula());
                 usuario.setNome(usuarioAtualizado.getNome());
                 usuario.setEmail(usuarioAtualizado.getEmail());
+                usuario.setAtivo(usuarioAtualizado.getAtivo());
                 return usuarioRepository.save(usuario);
             })
             .orElseGet(() -> {

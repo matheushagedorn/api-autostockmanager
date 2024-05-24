@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import br.univille.model.carros;
-import br.univille.repository.carrosRepository;
+import br.univille.model.Carros;
+import br.univille.repository.CarrosRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,33 +20,33 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/carros")
-public class carrosController {
+public class CarrosController {
 
     @Autowired
-    private carrosRepository carrosRepository;
+    private CarrosRepository carrosRepository;
 
     //Listar todos os carros
     @GetMapping
-    public List<carros> listarTodos() {
+    public List<Carros> listarTodos() {
         return carrosRepository.findAll();
     }
 
     //Buscar um carros pelo ID
     @GetMapping("/{id}")
-    public carros buscarPorId(@PathVariable Long id) {
-        Optional<carros> carros = carrosRepository.findById(id);
+    public Carros buscarPorId(@PathVariable Long id) {
+        Optional<Carros> carros = carrosRepository.findById(id);
         return carros.orElse(null);
     }
 
     //Criar um novo carros
     @PostMapping
-    public carros criarcarros(@RequestBody carros carros) {
+    public Carros criarcarros(@RequestBody Carros carros) {
         return carrosRepository.save(carros);
     }
 
     //Atualizar um carros existente
     @PutMapping("/{id}")
-    public carros atualizarcarros(@PathVariable Long id, @RequestBody carros carrosAtualizado) {
+    public Carros atualizarcarros(@PathVariable Long id, @RequestBody Carros carrosAtualizado) {
         return carrosRepository.findById(id)
             .map(carros -> {
                 carros.setmodelo(carrosAtualizado.getmodelo());

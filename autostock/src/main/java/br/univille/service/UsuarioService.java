@@ -22,6 +22,10 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
+    public Optional<Usuario> buscarPorMatricula(String matricula) {
+        return usuarioRepository.findByMatricula(matricula);
+    }
+
     public Usuario salvarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }

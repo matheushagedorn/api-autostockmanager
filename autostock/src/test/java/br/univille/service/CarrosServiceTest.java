@@ -1,7 +1,7 @@
 package br.univille.service;
 
-import br.univille.model.carros;
-import br.univille.repository.carrosRepository;
+import br.univille.model.Carros;
+import br.univille.repository.CarrosRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,31 +14,31 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class carrosServiceTest {
+public class CarrosServiceTest {
 
     @Autowired
-    private carroService carroservice;
+    private CarroService carroservice;
 
     @MockBean
-    private carrosRepository carrosRepository;
+    private CarrosRepository carrosRepository;
 
     @Test
     public void testSalvarcarros() {
-        carros carros = new carros();
+        Carros carros = new Carros();
         carros.setmodelo("c3");
-        when(carrosRepository.save(any(carros.class))).thenReturn(carros);
+        when(carrosRepository.save(any(Carros.class))).thenReturn(carros);
 
-        carros savedcarros = carroservice.salvarcarros(carros);
+        Carros savedcarros = carroservice.salvarcarros(carros);
         assertEquals("c3", savedcarros.getmodelo());
     }
 
     @Test
     public void testBuscarPorId() {
-        carros carros = new carros();
+        Carros carros = new Carros();
         carros.setId(1L);
         when(carrosRepository.findById(1L)).thenReturn(Optional.of(carros));
 
-        Optional<carros> foundcarros = carroservice.buscarPorId(1L);
+        Optional<Carros> foundcarros = carroservice.buscarPorId(1L);
         assertEquals(true, foundcarros.isPresent());
         assertEquals(1L, foundcarros.get().getId());
     }
