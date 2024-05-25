@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 
 @Entity
 public class Usuario {
@@ -13,10 +14,17 @@ public class Usuario {
     private String matricula;
     private String senha;
     private String nome;
+    
+    @Column(unique = true)
     private String email;
+    
+    @Column(unique = true)
+    private Number cpf;
+
     private Boolean ativo = true;
     private Boolean admin = false;
 
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -29,10 +37,10 @@ public class Usuario {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-    public String getsenha() {
+    public String getSenha() {
         return senha;
     }
-    public void setsenha(String senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
     public String getNome() {
@@ -47,6 +55,12 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+    public Number getCpf() {
+        return cpf;
+    }
+    public void setCpf(Number cpf) {
+        this.cpf = cpf;
+    }
     public Boolean getAtivo() {
         return ativo;
     }
@@ -59,5 +73,4 @@ public class Usuario {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
-
 }
