@@ -4,11 +4,13 @@ import br.univille.model.Usuario;
 import br.univille.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@CrossOrigin(origins = "http://localhost:5173")
 public class UsuarioService {
 
     @Autowired

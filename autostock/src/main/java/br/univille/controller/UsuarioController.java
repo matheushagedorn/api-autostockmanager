@@ -1,6 +1,7 @@
 package br.univille.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.univille.model.Usuario;
 import br.univille.repository.UsuarioRepository;
+import br.univille.service.UsuarioService;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +26,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     //Listar todos os usuários
     @GetMapping
@@ -40,9 +45,13 @@ public class UsuarioController {
 
     //Buscar um usuário pelo Matricula
     @GetMapping("/matricula/{matricula}")
-    public Usuario buscarPorMatricula(@PathVariable String matricula) {
-        Optional<Usuario> usuario = usuarioRepository.findByMatricula(matricula);
-        return usuario.orElse(null);
+    public ResponseEntity<Usuario> buscarPorMatricula(@PathVariable String matricula) {
+        Optional<Usuario> usuarioOptional = usuarioService.buscarPorMatricula(matricula);
+        if (usuarioOptional.isPresent()) {
+            return ResponseEntity.ok(usuarioOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     //Criar um novo usuário
