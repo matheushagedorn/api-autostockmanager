@@ -46,4 +46,11 @@ public class UsuarioService {
             return usuarioRepository.save(usuarioAtualizado);
         });
     }
+
+    public Usuario atualizarSenha(Long id, String senha) {
+        return usuarioRepository.findById(id).map(usuario -> {
+            usuario.setSenha(senha);
+            return usuarioRepository.save(usuario);
+        }).orElse(null);
+    }
 }

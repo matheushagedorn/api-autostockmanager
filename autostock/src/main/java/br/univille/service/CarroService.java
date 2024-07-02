@@ -37,7 +37,7 @@ public class CarroService {
             carros.setcor(carrosAtualizado.getcor());
             carros.setquilometragem(carrosAtualizado.getquilometragem());
             carros.setvalor(carrosAtualizado.getvalor());
-            carros.setstatus(carrosAtualizado.getstatus());
+            carros.setAtivo(carrosAtualizado.getAtivo());
             return carrosRepository.save(carros);
         }).orElseGet(() -> {
             carrosAtualizado.setId(id);

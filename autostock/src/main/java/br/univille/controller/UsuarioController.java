@@ -77,6 +77,18 @@ public class UsuarioController {
             });
     }
 
+    // Atualizar senha usuário existente
+    @PutMapping("/senha/{id}")
+    public Usuario mudarSenhaUsuario(@PathVariable Long id, @RequestBody String senha) {
+        System.out.println(senha);
+        return usuarioRepository.findById(id)
+            .map(usuario -> {
+                usuario.setSenha(senha);
+                return usuarioRepository.save(usuario);
+            })
+            .orElse(null);
+    }
+
     // Atualizar status usuário existente
     @PutMapping("/status/{id}")
     public Usuario mudarStatusUsuario(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {

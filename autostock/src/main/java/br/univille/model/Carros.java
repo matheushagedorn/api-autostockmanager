@@ -15,8 +15,9 @@ public class Carros {
     private int ano;
     private String cor;
     private int quilometragem;
-    private String status;
+    private Boolean ativo = true;
     private int valor;
+
     public Long getId() {
         return id;
     }
@@ -34,7 +35,6 @@ public class Carros {
     }
     public void setmarca(String marca) {
         this.marca = marca;
-    
     }
     public int getano() {
         return ano;
@@ -48,7 +48,6 @@ public class Carros {
     public void setquilometragem(int quilometragem) {
         this.quilometragem = quilometragem;
     }
-
     public String getcor() {
         return cor;
     }
@@ -62,11 +61,11 @@ public class Carros {
     public void setvalor(int valor) {
         this.valor = valor;        
     }
-    public String getstatus() {
-        return status;
+    public Boolean getAtivo() {
+        return ativo;
     }
-    public void setstatus(String status) {
-        this.status = status;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
     
 }

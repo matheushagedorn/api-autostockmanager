@@ -54,7 +54,21 @@ public class CarrosController {
                 carros.setcor(carrosAtualizado.getcor());
                 carros.setquilometragem(carrosAtualizado.getquilometragem());
                 carros.setvalor(carrosAtualizado.getvalor());
-                carros.setstatus(carrosAtualizado.getstatus());
+                carros.setAtivo(carrosAtualizado.getAtivo());
+                return carrosRepository.save(carros);
+            })
+            .orElseGet(() -> {
+                carrosAtualizado.setId(id);
+                return carrosRepository.save(carrosAtualizado);
+            });
+    }
+
+    // Atualizar status usuário existente
+    @PutMapping("/status/{id}")
+    public Carros mudarStatusCarro(@PathVariable Long id, @RequestBody Carros carrosAtualizado) {
+        return carrosRepository.findById(id)
+            .map(carros -> {
+                carros.setAtivo(carrosAtualizado.getAtivo());
                 return carrosRepository.save(carros);
             })
             .orElseGet(() -> {
